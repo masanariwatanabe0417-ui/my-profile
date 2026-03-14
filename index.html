@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>自己紹介 — 渡邊将成（まささん）</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+    :root {
+      --navy:   #0f2b4c;
+      --blue:   #1a6fcf;
+      --sky:    #4db8ff;
+      --teal:   #00c9a7;
+      --amber:  #f5a623;
+      --coral:  #ff6b6b;
+      --purple: #9b59b6;
+      --bg:     #f0f4f9;
+      --card:   #ffffff;
+      --text:   #1a2a3a;
+      --muted:  #6b7f93;
+      --border: #d8e4f0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      background: linear-gradient(135deg, #0f2b4c 0%, #1a4a8a 60%, #1a6fcf 100%);
+      color: #fff;
+      padding: 64px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin: 0 auto 24px;
+      border: 4px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 .kana {
+      font-size: 0.55em;
+      font-weight: 500;
+      opacity: 0.7;
+      display: block;
+      letter-spacing: 2px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ========== LAYOUT ========== */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* ========== SECTION CARD ========== */
+    .section-card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(15,43,76,0.08);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    /* ========== COLOR THEMES ========== */
+    .theme-blue   .section-icon { background: #e8f3ff; }
+    .theme-teal   .section-icon { background: #e0faf5; }
+    .theme-amber  .section-icon { background: #fff5e0; }
+    .theme-coral  .section-icon { background: #fff0f0; }
+    .theme-purple .section-icon { background: #f3e8ff; }
+
+    /* ========== AI現在地 ========== */
+    .journey-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .journey-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .journey-step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-line {
+      width: 2px;
+      flex-grow: 1;
+      min-height: 24px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    .journey-step:last-child .step-line { display: none; }
+
+    .step-content {
+      padding: 4px 0 20px;
+    }
+
+    .step-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .highlight {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ========== 理由カード ========== */
+    .reason-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .reason-item {
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .reason-item-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .reason-item-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .reason-item-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ========== 仕事・プライベート ========== */
+    .solve-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .solve-grid { grid-template-columns: 1fr; }
+    }
+
+    .solve-col {
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .solve-col-work { background: #f0f7ff; }
+    .solve-col-life { background: #f0fdf7; }
+
+    .solve-col-title {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .solve-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .solve-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .solve-item-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .work-dot { background: #cce3ff; color: var(--blue); }
+    .life-dot { background: #c8f7e8; color: #00a07a; }
+
+    .solve-item-text { line-height: 1.55; }
+
+    .solve-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      padding-left: 32px;
+    }
+
+    .solve-vision {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .solve-vision-work { background: #ddeeff; color: #155a9e; }
+    .solve-vision-life { background: #d0f5ea; color: #0a7a5c; }
+
+    /* ========== 私という人間 ========== */
+    .person-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .person-card {
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .person-card-icon { font-size: 36px; margin-bottom: 10px; }
+    .person-card-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .person-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ========== 目標 ========== */
+    .goals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .goal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: #f8faff;
+      border: 1px solid var(--border);
+    }
+
+    .goal-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--sky));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .goal-text { font-size: 14px; padding-top: 5px; }
+
+    /* ========== 仲間へのひとこと ========== */
+    .message-card {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a4a8a 100%);
+      border-radius: 20px;
+      padding: 40px 36px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .message-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 160px;
+      opacity: 0.08;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .message-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      opacity: 0.6;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .message-text {
+      font-size: clamp(15px, 2.5vw, 18px);
+      line-height: 2;
+      opacity: 0.92;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .message-text strong {
+      color: var(--sky);
+      font-weight: 700;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-avatar">🏉</div>
+  <h1>
+    <span class="kana">まささん</span>
+    渡邊 将成
+  </h1>
+  <div class="hero-badges">
+    <span class="hero-badge">🏛️ 市役所公務員</span>
+    <span class="hero-badge">📋 市議会事務局 課長</span>
+    <span class="hero-badge">🤝 管理職</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- AIとの現在地 -->
+  <div class="section-card theme-blue">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <div>
+        <div class="section-title">AIとの現在地</div>
+        <div class="section-subtitle">今、どんな状態にいるか</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="journey-steps">
+        <div class="journey-step">
+          <div class="journey-step-left">
+            <div class="step-dot" style="background:#e8f3ff;color:#1a6fcf;">✓</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-label" style="color:#1a6fcf;">これまで</div>
+            <div class="step-desc">さまざまな場面でAIを<span class="highlight">積極的に活用</span>してきた</div>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-step-left">
+            <div class="step-dot" style="background:#fff5e0;color:#f5a623;">⚠</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-label" style="color:#f5a623;">現在の壁</div>
+            <div class="step-desc">使い方に<span class="highlight" style="color:#d4821c;">行き詰まり感</span>を感じている</div>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-step-left">
+            <div class="step-dot" style="background:#f3e8ff;color:#9b59b6;">→</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-label" style="color:#9b59b6;">気づき</div>
+            <div class="step-desc">AIが持つ<span class="highlight" style="color:#9b59b6;">本来のポテンシャル</span>を、まだ引き出せていないという感覚がある</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 入った理由 -->
+  <div class="section-card theme-teal">
+    <div class="section-header">
+      <div class="section-icon">🎯</div>
+      <div>
+        <div class="section-title">AI Driven Schoolに入った理由</div>
+        <div class="section-subtitle">ここに来た3つのわけ</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="reason-grid">
+        <div class="reason-item">
+          <div class="reason-item-icon">🚀</div>
+          <div class="reason-item-title">もっと有効に・楽しく使いこなしたい</div>
+          <div class="reason-item-desc">AIの活用を広げ、仕事もプライベートも変えていきたい</div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-item-icon">🌌</div>
+          <div class="reason-item-title">新次元のAI活用を見つけたい</div>
+          <div class="reason-item-desc">自分の発想の地平線を超えた、まだ見ぬ使い方を探している</div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-item-icon">🤝</div>
+          <div class="reason-item-title">多様な人たちと繋がりたい</div>
+          <div class="reason-item-desc">市役所という環境柄、異業種・異分野の人と関わる機会が少ない。自分の想像の枠を超えた人に出会いたい</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AIで解決したいこと -->
+  <div class="section-card theme-amber">
+    <div class="section-header">
+      <div class="section-icon">💡</div>
+      <div>
+        <div class="section-title">AIで解決したいこと</div>
+        <div class="section-subtitle">仕事編 ＆ プライベート編</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="solve-grid">
+
+        <!-- 仕事編 -->
+        <div class="solve-col solve-col-work">
+          <div class="solve-col-title" style="color:#1a4a8a;">🏛️ 仕事編
+            <span style="font-size:11px;font-weight:500;color:#6b7f93;">市議会から、新しい公務のかたちを</span>
+          </div>
+          <div class="solve-list">
+            <div class="solve-item">
+              <div class="solve-item-dot work-dot">▸</div>
+              <div class="solve-item-text">チーム全体の<strong>仕事効率化</strong></div>
+            </div>
+            <div class="solve-item">
+              <div class="solve-item-dot work-dot">▸</div>
+              <div class="solve-item-text"><strong>残業削減・無駄な仕事をなくす</strong></div>
+            </div>
+            <div class="solve-item">
+              <div class="solve-item-dot work-dot">▸</div>
+              <div class="solve-item-text">議事録の<strong>自動作成</strong></div>
+            </div>
+            <div class="solve-item">
+              <div class="solve-item-dot work-dot">▸</div>
+              <div class="solve-item-text">議員の<strong>質問文書 作成支援</strong></div>
+            </div>
+          </div>
+          <div class="solve-vision solve-vision-work">
+            🏆 市全体の働き方変革の<br>モデルケースへつなげたい
+          </div>
+        </div>
+
+        <!-- プライベート編 -->
+        <div class="solve-col solve-col-life">
+          <div class="solve-col-title" style="color:#0a6049;">🌿 プライベート編
+            <span style="font-size:11px;font-weight:500;color:#6b7f93;">生活と人生の質を上げたい</span>
+          </div>
+          <div class="solve-list">
+            <div class="solve-item">
+              <div class="solve-item-dot life-dot">▸</div>
+              <div class="solve-item-text"><strong>物忘れ対策</strong>：増えてきた「うっかり」をAIでカバー</div>
+            </div>
+            <div class="solve-item">
+              <div class="solve-item-dot life-dot">▸</div>
+              <div class="solve-item-text"><strong>ダイエットサポート</strong>：スマホで手軽に続けられるしくみ</div>
+            </div>
+            <div class="solve-item">
+              <div class="solve-item-dot life-dot">▸</div>
+              <div class="solve-item-text"><strong>健康管理・習慣づくり・日々の記録</strong></div>
+            </div>
+          </div>
+          <div class="solve-vision solve-vision-life">
+            🌱 AIを「生活の伴走者」として<br>使いこなす土台をつくる
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 私という人間 -->
+  <div class="section-card theme-coral">
+    <div class="section-header">
+      <div class="section-icon">👤</div>
+      <div>
+        <div class="section-title">私という人間</div>
+        <div class="section-subtitle">まささんのパーソナリティ</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="person-grid">
+        <div class="person-card">
+          <div class="person-card-icon">🏉</div>
+          <div class="person-card-title">中学〜大学</div>
+          <div class="person-card-desc">ラグビー一筋<br>チームスポーツで培った<strong>根性と仲間意識</strong></div>
+        </div>
+        <div class="person-card">
+          <div class="person-card-icon">🌅</div>
+          <div class="person-card-title">現在</div>
+          <div class="person-card-desc">スポーツは一段落<br>お酒も体に響くように<br>なってきた今日この頃</div>
+        </div>
+        <div class="person-card">
+          <div class="person-card-icon">🍻</div>
+          <div class="person-card-title">コミュニケーション</div>
+          <div class="person-card-desc">飲みニケーション人間<br>「古い」と言われつつも<br><strong>人と直接向き合うことを何より大切に</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- この場での目標 -->
+  <div class="section-card theme-purple">
+    <div class="section-header">
+      <div class="section-icon">🎓</div>
+      <div>
+        <div class="section-title">この場での目標</div>
+        <div class="section-subtitle">AI Driven Schoolで目指すこと</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="goals-list">
+        <div class="goal-item">
+          <div class="goal-num">1</div>
+          <div class="goal-text">AIのポテンシャルを<strong>自分の手で引き出せる</strong>ようになりたい</div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-num">2</div>
+          <div class="goal-text">自分の<strong>想像を超えた人たち</strong>と出会い、視野を広げたい</div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-num">3</div>
+          <div class="goal-text">AI Driven Schoolをきっかけに、<strong>何か新しく熱中できるもの</strong>を見つけたい</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 仲間へのひとこと -->
+  <div class="message-card">
+    <div class="message-title">✉️ 仲間へのひとこと</div>
+    <p class="message-text">
+      自分の「当たり前」がどれだけ狭いか、薄々気づいています。<br>
+      <strong>自分の想像の外にいる人たち</strong>と出会いたくて、ここに来ました。<br>
+      常識を<strong>軽々と超えてくる人</strong>に会えるのが、正直いちばん楽しみです。<br>
+      気軽に声をかけてもらえたら嬉しいです。
+    </p>
+  </div>
+
+</div>
+
+<footer>自己紹介図解 — 渡邊将成（まささん）</footer>
+
+<script>
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section-card, .message-card').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
