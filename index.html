@@ -31,6 +31,30 @@
       line-height: 1.7;
     }
 
+    /* ========== BUBBLE BACKGROUND ========== */
+    #bubble-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(160deg, #ddeeff 0%, #eaf6f2 50%, #e8f0fb 100%);
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      animation: floatUp linear infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0)   translateX(0)    scale(1);   opacity: 0; }
+      10%  { opacity: 1; }
+      50%  { transform: translateY(-45vh) translateX(var(--sway))  scale(1.05); }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-105vh) translateX(0) scale(0.95); opacity: 0; }
+    }
+
     /* ========== HERO ========== */
     .hero {
       background: linear-gradient(135deg, #0f2b4c 0%, #1a4a8a 60%, #1a6fcf 100%);
@@ -49,18 +73,21 @@
     }
 
     .hero-avatar {
-      width: 96px;
-      height: 96px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--sky));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
       margin: 0 auto 24px;
-      border: 4px solid rgba(255,255,255,0.3);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border: 4px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      overflow: hidden;
       position: relative;
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .hero h1 {
@@ -449,21 +476,53 @@
 </head>
 <body>
 
+<!-- BUBBLE BACKGROUND -->
+<div id="bubble-bg"></div>
+
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-avatar">🏉</div>
+  <div class="hero-avatar"><img src="IMG_2059.PNG" alt="渡邊将成" /></div>
   <h1>
     <span class="kana">まささん</span>
     渡邊 将成
   </h1>
   <div class="hero-badges">
     <span class="hero-badge">🏛️ 市役所公務員</span>
-    <span class="hero-badge">📋 市議会事務局 課長</span>
-    <span class="hero-badge">🤝 管理職</span>
+    <span class="hero-badge">📋 市議会事務局</span>
   </div>
 </div>
 
 <div class="container">
+
+  <!-- 私という人間 -->
+  <div class="section-card theme-coral">
+    <div class="section-header">
+      <div class="section-icon">👤</div>
+      <div>
+        <div class="section-title">私という人間</div>
+        <div class="section-subtitle">まささんのパーソナリティ</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="person-grid">
+        <div class="person-card">
+          <div class="person-card-icon">🏉</div>
+          <div class="person-card-title">中学〜大学</div>
+          <div class="person-card-desc">ラグビー一筋<br>チームスポーツで培った<strong>根性と仲間意識</strong></div>
+        </div>
+        <div class="person-card">
+          <div class="person-card-icon">🌅</div>
+          <div class="person-card-title">現在</div>
+          <div class="person-card-desc">スポーツは一段落<br>お酒も体に響くように<br>なってきた今日この頃</div>
+        </div>
+        <div class="person-card">
+          <div class="person-card-icon">🍻</div>
+          <div class="person-card-title">コミュニケーション</div>
+          <div class="person-card-desc">飲みニケーション人間<br>「古い」と感じつつも<br><strong>人と直接向き合うことを何より大切に</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- AIとの現在地 -->
   <div class="section-card theme-blue">
@@ -505,36 +564,6 @@
             <div class="step-label" style="color:#9b59b6;">気づき</div>
             <div class="step-desc">AIが持つ<span class="highlight" style="color:#9b59b6;">本来のポテンシャル</span>を、まだ引き出せていないという感覚がある</div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 入った理由 -->
-  <div class="section-card theme-teal">
-    <div class="section-header">
-      <div class="section-icon">🎯</div>
-      <div>
-        <div class="section-title">AI Driven Schoolに入った理由</div>
-        <div class="section-subtitle">ここに来た3つのわけ</div>
-      </div>
-    </div>
-    <div class="section-body">
-      <div class="reason-grid">
-        <div class="reason-item">
-          <div class="reason-item-icon">🚀</div>
-          <div class="reason-item-title">もっと有効に・楽しく使いこなしたい</div>
-          <div class="reason-item-desc">AIの活用を広げ、仕事もプライベートも変えていきたい</div>
-        </div>
-        <div class="reason-item">
-          <div class="reason-item-icon">🌌</div>
-          <div class="reason-item-title">新次元のAI活用を見つけたい</div>
-          <div class="reason-item-desc">自分の発想の地平線を超えた、まだ見ぬ使い方を探している</div>
-        </div>
-        <div class="reason-item">
-          <div class="reason-item-icon">🤝</div>
-          <div class="reason-item-title">多様な人たちと繋がりたい</div>
-          <div class="reason-item-desc">市役所という環境柄、異業種・異分野の人と関わる機会が少ない。自分の想像の枠を超えた人に出会いたい</div>
         </div>
       </div>
     </div>
@@ -607,31 +636,31 @@
     </div>
   </div>
 
-  <!-- 私という人間 -->
-  <div class="section-card theme-coral">
+  <!-- 入った理由 -->
+  <div class="section-card theme-teal">
     <div class="section-header">
-      <div class="section-icon">👤</div>
+      <div class="section-icon">🎯</div>
       <div>
-        <div class="section-title">私という人間</div>
-        <div class="section-subtitle">まささんのパーソナリティ</div>
+        <div class="section-title">AI Driven Schoolに入った理由</div>
+        <div class="section-subtitle">ここに来た3つのわけ</div>
       </div>
     </div>
     <div class="section-body">
-      <div class="person-grid">
-        <div class="person-card">
-          <div class="person-card-icon">🏉</div>
-          <div class="person-card-title">中学〜大学</div>
-          <div class="person-card-desc">ラグビー一筋<br>チームスポーツで培った<strong>根性と仲間意識</strong></div>
+      <div class="reason-grid">
+        <div class="reason-item">
+          <div class="reason-item-icon">🚀</div>
+          <div class="reason-item-title">もっと有効に・楽しく使いこなしたい</div>
+          <div class="reason-item-desc">AIの活用を広げ、仕事もプライベートも変えていきたい</div>
         </div>
-        <div class="person-card">
-          <div class="person-card-icon">🌅</div>
-          <div class="person-card-title">現在</div>
-          <div class="person-card-desc">スポーツは一段落<br>お酒も体に響くように<br>なってきた今日この頃</div>
+        <div class="reason-item">
+          <div class="reason-item-icon">🌌</div>
+          <div class="reason-item-title">新次元のAI活用を見つけたい</div>
+          <div class="reason-item-desc">自分の発想の地平線を超えた、まだ見ぬ使い方を探している</div>
         </div>
-        <div class="person-card">
-          <div class="person-card-icon">🍻</div>
-          <div class="person-card-title">コミュニケーション</div>
-          <div class="person-card-desc">飲みニケーション人間<br>「古い」と言われつつも<br><strong>人と直接向き合うことを何より大切に</strong></div>
+        <div class="reason-item">
+          <div class="reason-item-icon">🤝</div>
+          <div class="reason-item-title">多様な人たちと繋がりたい</div>
+          <div class="reason-item-desc">市役所という環境柄、異業種・異分野の人と関わる機会が少ない。自分の想像の枠を超えた人に出会いたい</div>
         </div>
       </div>
     </div>
@@ -666,12 +695,11 @@
 
   <!-- 仲間へのひとこと -->
   <div class="message-card">
-    <div class="message-title">✉️ 仲間へのひとこと</div>
+    <div class="message-title">✉️ 皆さんへ一言</div>
     <p class="message-text">
-      自分の「当たり前」がどれだけ狭いか、薄々気づいています。<br>
-      <strong>自分の想像の外にいる人たち</strong>と出会いたくて、ここに来ました。<br>
-      常識を<strong>軽々と超えてくる人</strong>に会えるのが、正直いちばん楽しみです。<br>
-      気軽に声をかけてもらえたら嬉しいです。
+      AIの可能性をまだ自分の中で<strong>引き出せていない感覚</strong>があります。<br>
+      皆さんと一緒に学びながら、<strong>その答えを見つけていけたら</strong>嬉しいです。<br>
+      よろしくお願いします！
     </p>
   </div>
 
@@ -691,6 +719,39 @@
 
   document.querySelectorAll('.section-card, .message-card').forEach(el => {
     observer.observe(el);
+  });
+
+  // ========== BUBBLE BACKGROUND ==========
+  const bgEl = document.getElementById('bubble-bg');
+
+  const bubbleConfig = [
+    { size: 180, left: 8,  delay: 0,  duration: 22, color: 'rgba(26,111,207,0.35)',  sway: '40px'  },
+    { size: 260, left: 22, delay: 4,  duration: 28, color: 'rgba(0,201,167,0.30)',   sway: '-50px' },
+    { size: 140, left: 40, delay: 8,  duration: 20, color: 'rgba(77,184,255,0.38)',  sway: '30px'  },
+    { size: 220, left: 58, delay: 2,  duration: 25, color: 'rgba(155,89,182,0.30)',  sway: '-40px' },
+    { size: 160, left: 72, delay: 11, duration: 24, color: 'rgba(245,166,35,0.32)',  sway: '35px'  },
+    { size: 300, left: 85, delay: 6,  duration: 32, color: 'rgba(26,74,138,0.28)',   sway: '-60px' },
+    { size: 120, left: 15, delay: 15, duration: 19, color: 'rgba(0,201,167,0.35)',   sway: '25px'  },
+    { size: 200, left: 50, delay: 18, duration: 27, color: 'rgba(255,107,107,0.28)', sway: '-45px' },
+    { size: 240, left: 30, delay: 22, duration: 30, color: 'rgba(26,111,207,0.32)',  sway: '55px'  },
+    { size: 170, left: 65, delay: 26, duration: 23, color: 'rgba(155,89,182,0.33)',  sway: '-30px' },
+  ];
+
+  bubbleConfig.forEach(b => {
+    const el = document.createElement('div');
+    el.className = 'bubble';
+    el.style.cssText = `
+      width: ${b.size}px;
+      height: ${b.size}px;
+      left: ${b.left}%;
+      bottom: -${b.size}px;
+      background: radial-gradient(circle at 35% 35%, white, ${b.color});
+      border: 1px solid rgba(255,255,255,0.6);
+      --sway: ${b.sway};
+      animation-duration: ${b.duration}s;
+      animation-delay: ${b.delay}s;
+    `;
+    bgEl.appendChild(el);
   });
 </script>
 </body>
